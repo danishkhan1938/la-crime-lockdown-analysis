@@ -1,0 +1,5 @@
+model,accuracy,weighted_f1,provenance
+Logistic Regression,0.933540,0.933352,supplied notebook saved output
+Random Forest,0.947484,0.948116,supplied notebook saved output
+SVM,0.934437,0.934270,supplied notebook saved output
+XGBoost,0.947566,0.948146,supplied notebook saved output
