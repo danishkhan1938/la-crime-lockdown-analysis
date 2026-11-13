@@ -1,0 +1,81 @@
+{
+  "run_description": "Original dissertation workflow rerun by the author in Colab",
+  "rerun_date": "2026-11-13",
+  "input_notebook_sha256": "e707591183256cdfffeac9437d288e532eb20c7995d8229110cfefd43c8befb0",
+  "csv_filename": "Crime_Data_from_2020_to_Present.csv",
+  "csv_size_bytes": 232591157,
+  "csv_sha256": "051b14448401f8433e6478aafba4ef190fdbcc073e505a9c60a9ac834c05d78a",
+  "raw_records": 910707,
+  "raw_columns": 28,
+  "study_records": 750936,
+  "study_start": "2020-01-01",
+  "study_end": "2023-06-19",
+  "features": [
+    "Year",
+    "Month",
+    "DayOfWeek",
+    "Hour",
+    "Vict Age",
+    "Vict_Age_Cat",
+    "Vict Sex",
+    "Vict Descent",
+    "Premis Desc",
+    "AREA NAME",
+    "Weapon Desc",
+    "Lockdown_Phase"
+  ],
+  "study_class_counts": {
+    "non_violent_0": 536877,
+    "violent_1": 214059
+  },
+  "training_pool_records": 525655,
+  "training_sample_records_before_smote": 10000,
+  "sample_class_counts_before_smote": {
+    "non_violent_0": 7188,
+    "violent_1": 2812
+  },
+  "training_records_after_smote": 14376,
+  "sample_class_counts_after_smote": {
+    "non_violent_0": 7188,
+    "violent_1": 7188
+  },
+  "test_records": 225281,
+  "test_class_counts": {
+    "non_violent_0": 161063,
+    "violent_1": 64218
+  },
+  "random_state": 42,
+  "test_fraction": 0.3,
+  "cv_folds": 5,
+  "tuning_metric": "f1_weighted",
+  "methodology": "Original ordinal-encoding and SMOTE workflow; not the optional revised pipeline",
+  "environment_versions": "Exact package versions were not recorded in the uploaded notebook.",
+  "figure_count": 10,
+  "phase_summary": [
+    {
+      "phase": "Pre-Lockdown",
+      "start_date": "2020-01-01",
+      "end_date": "2020-03-18",
+      "calendar_days": 78,
+      "recorded_incidents": 45859,
+      "incidents_per_calendar_day": 587.9358974358975
+    },
+    {
+      "phase": "Lockdown",
+      "start_date": "2020-03-19",
+      "end_date": "2021-01-31",
+      "calendar_days": 319,
+      "recorded_incidents": 170348,
+      "incidents_per_calendar_day": 534.0062695924765
+    },
+    {
+      "phase": "Post-Lockdown",
+      "start_date": "2021-02-01",
+      "end_date": "2023-06-19",
+      "calendar_days": 869,
+      "recorded_incidents": 534729,
+      "incidents_per_calendar_day": 615.3383199079402
+    }
+  ],
+  "packaging_verification": "All saved accuracies and weighted F1 values checked against confusion matrices; no model retraining during packaging."
+}

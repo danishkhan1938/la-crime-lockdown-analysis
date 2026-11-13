@@ -1,5 +1,5 @@
 model,accuracy,weighted_f1,provenance
-Logistic Regression,0.933540,0.933352,supplied notebook saved output
-Random Forest,0.947484,0.948116,supplied notebook saved output
-SVM,0.934437,0.934270,supplied notebook saved output
-XGBoost,0.947566,0.948146,supplied notebook saved output
+XGBoost,0.9569382238182537,0.9574798752723044,"completed original-workflow notebook rerun, 2026-11-13"
+Random Forest,0.9562901443086634,0.9568387543100861,"completed original-workflow notebook rerun, 2026-11-13"
+SVM,0.9461605727957528,0.9461331356600303,"completed original-workflow notebook rerun, 2026-11-13"
+Logistic Regression,0.9446735410442958,0.9445198724056934,"completed original-workflow notebook rerun, 2026-11-13"

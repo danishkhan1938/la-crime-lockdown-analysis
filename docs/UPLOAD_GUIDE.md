@@ -1,14 +1,19 @@
-# Upload your project
+# Update your existing GitHub repository
 
-1. Extract `Danish_Crime_Dissertation_GitHub_Draft.zip` on your laptop.
-2. Sign in at https://github.com and create a private repository named `la-crime-lockdown-analysis`.
-3. Open the repository and choose **Add file > Upload files** (or the upload link for an empty repository).
-4. Upload the contents of the extracted project folder, including its subfolders. Upload the actual files, not the ZIP. Ensure README.md is at the repository root.
-5. Commit with the message `Add dissertation analysis draft and documentation`.
-6. Read `docs/REVIEW_NOTES.md` and reconcile the data and results before making the repository public.
+Your repository already exists: `danishkhan1938/la-crime-lockdown-analysis`.
+This package updates its notebook, results, charts and documentation.
 
-Do not upload the original CSV through the browser: it is about 233 MB, while browser uploads are limited to 25 MiB per file. Keep data setup instructions instead. A .gitignore protects Git-based workflows; it does not stop you manually selecting a file for browser upload.
+1. Download the updated ZIP and choose **Extract All** on your laptop.
+2. Open the extracted `la-crime-lockdown-analysis` folder. You should see README.md, requirements.txt, .gitignore, and the notebooks, data, docs, figures and results folders.
+3. Open your existing GitHub repository and return to its main **Code** page.
+4. Choose **Add file > Upload files**.
+5. Select the contents INSIDE the extracted project folder and drag them onto the upload page. Include all folders and root files, so README.md remains at the repository root. Upload the extracted contents rather than the ZIP.
+6. Use the commit message: **Update notebook with completed run and charts**.
+7. Click **Commit changes**. Files with the same paths update the previous versions.
+8. Open `notebooks/crime_analysis.ipynb` and check its saved charts. Return to the main page to check the updated README and the figures/results folders.
 
-Report and presentation: add separately after reviewing their contents and removing identifiers. No GitHub publication was performed in preparing this package.
+The large CSV is intentionally excluded. The report and presentation are also
+excluded while their figures are reconciled with this rerun. The optional
+revised training script is separate from this original-workflow package.
 
 GitHub reference: https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository

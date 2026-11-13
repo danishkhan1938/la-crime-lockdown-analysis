@@ -1,0 +1,129 @@
+{
+  "Logistic Regression": {
+    "accuracy": 0.9446735410442958,
+    "weighted_f1": 0.9445198724056934,
+    "macro_f1": 0.9317565453855783,
+    "violent_precision": 0.9104072828776248,
+    "violent_recall": 0.893877106107322,
+    "confusion_matrix": [
+      [
+        155414,
+        5649
+      ],
+      [
+        6815,
+        57403
+      ]
+    ],
+    "matrix_rows": [
+      "Non-violent",
+      "Violent"
+    ],
+    "matrix_columns": [
+      "Non-violent",
+      "Violent"
+    ],
+    "best_parameters": {
+      "C": 10.0,
+      "penalty": "l2"
+    },
+    "original_cv_weighted_f1": 0.9357352222803291,
+    "cv_caution": "Preprocessing and SMOTE occurred before cross-validation."
+  },
+  "Random Forest": {
+    "accuracy": 0.9562901443086634,
+    "weighted_f1": 0.9568387543100861,
+    "macro_f1": 0.9477706308098681,
+    "violent_precision": 0.8879375544044408,
+    "violent_recall": 0.9689495157121056,
+    "confusion_matrix": [
+      [
+        153210,
+        7853
+      ],
+      [
+        1994,
+        62224
+      ]
+    ],
+    "matrix_rows": [
+      "Non-violent",
+      "Violent"
+    ],
+    "matrix_columns": [
+      "Non-violent",
+      "Violent"
+    ],
+    "best_parameters": {
+      "max_depth": 20,
+      "min_samples_split": 5,
+      "n_estimators": 200
+    },
+    "original_cv_weighted_f1": 0.9709814571468052,
+    "cv_caution": "Preprocessing and SMOTE occurred before cross-validation."
+  },
+  "SVM": {
+    "accuracy": 0.9461605727957528,
+    "weighted_f1": 0.9461331356600303,
+    "macro_f1": 0.9338882075077655,
+    "violent_precision": 0.9069389540788425,
+    "violent_recall": 0.9038743031548787,
+    "confusion_matrix": [
+      [
+        155107,
+        5956
+      ],
+      [
+        6173,
+        58045
+      ]
+    ],
+    "matrix_rows": [
+      "Non-violent",
+      "Violent"
+    ],
+    "matrix_columns": [
+      "Non-violent",
+      "Violent"
+    ],
+    "best_parameters": {
+      "C": 1.0,
+      "gamma": "scale",
+      "kernel": "rbf"
+    },
+    "original_cv_weighted_f1": 0.9531798106366643,
+    "cv_caution": "Preprocessing and SMOTE occurred before cross-validation."
+  },
+  "XGBoost": {
+    "accuracy": 0.9569382238182537,
+    "weighted_f1": 0.9574798752723044,
+    "macro_f1": 0.9485481138100993,
+    "violent_precision": 0.8889015708150833,
+    "violent_recall": 0.9701952723535457,
+    "confusion_matrix": [
+      [
+        153276,
+        7787
+      ],
+      [
+        1914,
+        62304
+      ]
+    ],
+    "matrix_rows": [
+      "Non-violent",
+      "Violent"
+    ],
+    "matrix_columns": [
+      "Non-violent",
+      "Violent"
+    ],
+    "best_parameters": {
+      "learning_rate": 0.05,
+      "max_depth": 4,
+      "n_estimators": 200
+    },
+    "original_cv_weighted_f1": 0.9710529846130918,
+    "cv_caution": "Preprocessing and SMOTE occurred before cross-validation."
+  }
+}

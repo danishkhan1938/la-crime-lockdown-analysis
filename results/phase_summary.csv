@@ -1,0 +1,4 @@
+phase,start_date,end_date,calendar_days,recorded_incidents,incidents_per_calendar_day
+Pre-Lockdown,2020-01-01,2020-03-18,78,45859,587.9358974358975
+Lockdown,2020-03-19,2021-01-31,319,170348,534.0062695924765
+Post-Lockdown,2021-02-01,2023-06-19,869,534729,615.3383199079402

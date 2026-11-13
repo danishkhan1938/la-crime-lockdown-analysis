@@ -2,61 +2,115 @@
 
 **Danish Ahsan Khan | MSc Data Analytics, Dublin Business School**
 
-A dissertation project exploring temporal crime patterns and classifying recorded incidents as violent or non-violent using Python and machine learning.
+A Python analysis of recorded crime patterns in Los Angeles, combining temporal
+exploration with machine learning classification of violent and non-violent
+incidents. The study window is **1 January 2020 to 19 June 2023**.
 
-**Status: repository preparation draft.** The supplied report, saved notebook outputs, and CSV represent inconsistent record counts and results. This is an archive of the analysis workflow, not a verified reproduction. See [review notes](docs/REVIEW_NOTES.md).
+[View the completed notebook](notebooks/crime_analysis.ipynb) · [Open in Google Colab](https://colab.research.google.com/github/danishkhan1938/la-crime-lockdown-analysis/blob/main/notebooks/crime_analysis.ipynb) · [Methods and review notes](docs/REVIEW_NOTES.md)
 
-## Research focus
+**Run status:** original dissertation workflow rerun on 13 November 2026, with
+saved figures and results. The validation limitations documented below apply.
+These rerun results should be distinguished from figures in the written report.
 
-- Explore recorded crime counts across the study's defined pandemic phases.
-- Compare Logistic Regression, Random Forest, SVM, and XGBoost for incident classification.
-- Evaluate accuracy, precision, recall, weighted F1, and confusion matrices.
+## Research questions
 
-## Implementation
+- How do recorded incident counts and common offence categories vary across the study's defined pandemic phases?
+- How accurately do Logistic Regression, Random Forest, SVM and XGBoost classify recorded incidents as violent or non-violent using the selected incident attributes?
 
-The notebook filters incident dates from 1 January 2020 through 19 June 2023. It derives temporal and victim-age features and assigns a binary label using a manually specified offence-description list. It uses a stratified 70/30 train/test split, samples up to 10,000 training records, applies imputation, ordinal encoding and SMOTE, and tunes models using five-fold cross-validation.
+## Data and experiment sizes
 
-The implementation uses incident attributes such as weapon description. It classifies existing records; it does not establish an ability to forecast future crimes. Descriptive changes do not establish that lockdowns caused those changes.
+| Stage | Records |
+|---|---:|
+| Supplied raw CSV | 910,707 |
+| Study period after filtering | 750,936 |
+| Training partition before sampling | 525,655 |
+| Training sample used for modelling | **10,000** |
+| Training sample after SMOTE | 14,376 |
+| Separate, unresampled test set | **225,281** |
+
+The models use **12 predictors** and a stratified 70/30 train/test split with
+`random_state=42`. Five-fold grid search tunes weighted F1. The original method
+fits preprocessing and SMOTE before cross-validation; this can bias CV scores.
+Ordinary SMOTE on ordinal category codes is another limitation. See the
+[review notes](docs/REVIEW_NOTES.md) before interpreting the results.
+
+## Test results from the completed rerun
+
+| Model | Accuracy | Weighted F1 |
+|---|---:|---:|
+| XGBoost | 95.69% | 0.957480 |
+| Random Forest | 95.63% | 0.956839 |
+| SVM | 94.62% | 0.946133 |
+| Logistic Regression | 94.47% | 0.944520 |
+
+The table matches the saved notebook outputs. XGBoost has the highest observed
+test scores in this run, with Random Forest close behind. No significance test
+establishes a reliable difference between them.
+
+![Model comparison using weighted F1](figures/model_comparison_weighted_f1.png)
+
+The notebook includes all four confusion matrices. Exact counts, test metrics,
+selected hyperparameters and original CV scores are in
+[`results/model_details.json`](results/model_details.json).
+
+## Temporal exploration
+
+![Monthly recorded crime counts](figures/monthly_crime_counts.png)
+
+**June 2023 contains only 1–19 June.** The final point covers an incomplete
+month and should not be interpreted as a sudden full-month reduction.
+
+The study phases have different lengths. Daily averages provide a duration-adjusted
+description of recorded counts; they are not population-adjusted crime rates.
+
+| Project phase | Dates | Incidents | Calendar days | Incidents per day |
+|---|---|---:|---:|---:|
+| Pre-Lockdown | 2020-01-01 to 2020-03-18 | 45,859 | 78 | 587.94 |
+| Lockdown | 2020-03-19 to 2021-01-31 | 170,348 | 319 | 534.01 |
+| Post-Lockdown | 2021-02-01 to 2023-06-19 | 534,729 | 869 | 615.34 |
+
+These are descriptive associations. The analysis does not isolate lockdowns
+from seasonality, reporting changes or other causes.
 
 ## Files
 
 | Path | Contents |
 |---|---|
-| `notebooks/crime_analysis.ipynb` | Original analysis logic with a portable data path and cleared outputs |
-| `data/README.md` | Source and local data setup |
-| `results/saved_run_metrics.csv` | Metrics transcribed from the supplied notebook, not rerun |
-| `docs/REVIEW_NOTES.md` | Reproducibility discrepancies and methodological limitations |
-| `docs/UPLOAD_GUIDE.md` | Steps for uploading this folder to GitHub |
-| `requirements.txt` | Imported dependencies, with versions not recovered |
+| `notebooks/crime_analysis.ipynb` | Completed notebook with code, charts and model outputs |
+| `figures/` | Ten charts extracted from this notebook |
+| `results/saved_run_metrics.csv` | Current test accuracy and weighted F1 |
+| `results/model_details.json` | Confusion matrices, detailed metrics, best parameters and CV caveats |
+| `results/phase_summary.csv` | Phase counts, durations and daily averages |
+| `results/run_summary.json` | Dataset and notebook hashes, sample sizes and provenance |
+| `data/README.md` | Source and dataset setup |
+| `docs/REVIEW_NOTES.md` | Method limitations and report reconciliation |
+| `docs/UPLOAD_GUIDE.md` | Steps to update the existing GitHub repository |
+| `requirements.txt` | Dependencies imported by the original workflow |
 
-## Run locally
+## Run the notebook
 
-Use a Python environment with compatible versions of the packages below. The original environment was not supplied; this dependency list is not a tested lockfile.
+**Google Colab:** open the link above, save a copy, and upload
+`Crime_Data_from_2020_to_Present.csv` through the Files panel. Run the cells from
+top to bottom. The data-loading cell accepts the normal Colab `/content/` location.
+
+**Local Jupyter:** place the same CSV in `data/`, create a Python environment,
+install the dependencies, and open the notebook:
 
 ```bash
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS/Linux: source .venv/bin/activate
-pip install -r requirements.txt
-cd notebooks
+python -m pip install -r requirements.txt
 jupyter lab
 ```
 
-Place the CSV as described in [data setup](data/README.md), open `crime_analysis.ipynb`, and run cells from top to bottom. The full CSV makes the test set much larger than in the saved run; SVM evaluation and grid searches may be slow. Record the exact data snapshot and installed package versions when rerunning.
+The exact original package versions were not recorded. The requirements file
+lists dependencies, not a tested environment lockfile. Full model grid searches
+and SVM prediction on the large test set can take time.
 
-## Historical results, pending reconciliation
+## Interpretation and reuse
 
-| Model | Saved test accuracy | Saved weighted F1 |
-|---|---:|---:|
-| Logistic Regression | 0.933540 | 0.933352 |
-| Random Forest | 0.947484 | 0.948116 |
-| SVM | 0.934437 | 0.934270 |
-| XGBoost | 0.947566 | 0.948146 |
+- The target follows a project-specific list of offence descriptions. Recorded weapon and other incident attributes make this retrospective classification, not validated future-crime forecasting.
+- Raw phase totals cover unequal durations. Use the daily averages above for descriptive comparison.
+- The original age-zero handling, resampling and validation design require review before stronger research claims.
+- Dataset provider terms govern data reuse. The CSV is not included in this repository. No open-source licence has been selected for the author's code.
 
-These are existing notebook outputs, not independently validated results. Do not substitute the different report metrics without identifying the corresponding run. The saved XGBoost and Random Forest scores are nearly identical; no significance test establishes superiority.
-
-## Limitations and next steps
-
-Reconcile the dataset and report, place preprocessing and any resampling inside cross-validation folds, review categorical resampling, and rerun before presenting performance as final. Compare phase-normalised rates rather than unequal-duration totals. See the review notes for details.
-
-The dissertation report and presentation are not included in this code package. Add reviewed public copies separately after removing personal identifiers and resolving inconsistent findings. No licence has been selected for the author's code; data remains subject to its provider's terms.
+The report and presentation are not included in this code package. Reconcile
+their figures with the rerun before adding public copies.
